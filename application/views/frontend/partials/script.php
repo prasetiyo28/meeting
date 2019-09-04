@@ -1,0 +1,11 @@
+ <script src="<?php echo base_url()?>assets/js/popper.js"></script>
+ <script src="<?php echo base_url()?>assets/js/bootstrap.min.js"></script>
+ <script src="<?php echo base_url()?>assets/vendors/owl-carousel/owl.carousel.min.js"></script>
+ <script src="<?php echo base_url()?>assets/js/jquery.ajaxchimp.min.js"></script>
+ <script src="<?php echo base_url()?>assets/js/mail-script.js"></script>
+ <script src="<?php echo base_url()?>assets/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+ <script src="<?php echo base_url()?>assets/vendors/nice-select/js/jquery.nice-select.js"></script>
+ <script src="<?php echo base_url()?>assets/js/mail-script.js"></script>
+ <script src="<?php echo base_url()?>assets/js/stellar.js"></script>
+ <script src="<?php echo base_url()?>assets/vendors/lightbox/simpleLightbox.min.js"></script>
+ <script src="<?php echo base_url()?>assets/js/custom.js"></script>
