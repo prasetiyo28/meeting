@@ -19,5 +19,5 @@
   <!-- Bootstrap core JavaScript-->
   <script src="<?php echo base_url() ?>assets/admin/vendor/jquery/jquery.min.js"></script>
   <script src="<?php echo base_url() ?>assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+  <script type="text/javascript" src="<?php echo base_url() ?>assets/chartjs/Chart.js"></script>
 </head>

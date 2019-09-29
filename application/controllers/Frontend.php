@@ -179,10 +179,10 @@ $email = $this->session->userdata('email');
 $data['banner'] = 'false';
 $data2['content'] = $this->load->view('frontend/pages/invoice',$data,true);
 $this->cart->destroy();
-$this->send($email,$data2['content']);
+$invoice2 = $this->send($email,$data2['content']);
 $this->load->view('frontend/default',$data2);
 
-		// echo json_encode($invoice);
+// echo json_encode($invoice2);
 }
 
 public function cetak_invoice($id)
@@ -239,7 +239,7 @@ public function send($email,$data){
 	if ($this->email->send()) {
 		// echo 'Email sent.';
 	} else {
-		// show_error($this->email->print_debugger());
+		show_error($this->email->print_debugger());
 	}
 }
 

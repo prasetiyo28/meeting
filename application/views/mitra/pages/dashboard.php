@@ -27,6 +27,12 @@
  					</div>
  				<?php } ?>
 
+ 				<center>
+ 					
+ 					<h4>Grafik Booking Ruangan</h4>
+ 				</center>
+
+ 				<canvas id="myChart"></canvas>
 
 
  			</div>
@@ -36,6 +42,43 @@
 
  	</div>
  </div>
+
+ <?php 	$nama = ''; $jumlah = '';foreach ($grafik as $x) {
+ 	$nama = $nama .'"'.$x->nama_ruangan.'",';
+ 	$jumlah = $jumlah.$x->jumlah.',';
+ } ?>
+
+ <script>
+ 	var ctx = document.getElementById("myChart").getContext('2d');
+ 	var myChart = new Chart(ctx, {
+ 		type: 'bar',
+ 		data: {
+ 			labels: [<?php echo $nama; ?>],
+ 			datasets: [{
+ 				label: '# of Votes',
+ 				data: [<?php echo $jumlah ?>],
+ 				backgroundColor: [
+ 				'rgba(255, 99, 132, 0.2)',
+ 				'rgba(54, 162, 235, 0.2)',
+ 				],
+ 				borderColor: [
+ 				'rgba(255,99,132,1)',
+ 				'rgba(54, 162, 235, 1)',
+ 				],
+ 				borderWidth: 1
+ 			}]
+ 		},
+ 		options: {
+ 			scales: {
+ 				yAxes: [{
+ 					ticks: {
+ 						beginAtZero:true
+ 					}
+ 				}]
+ 			}
+ 		}
+ 	});
+ </script>
 
  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
  	<div class="modal-dialog" role="document">

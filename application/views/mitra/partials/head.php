@@ -24,5 +24,5 @@
   <script type="text/javascript" src='http://maps.google.com/maps/api/js?key=AIzaSyCz1LkOZmWBZRyC1WUJcrOqZiK-7yMuQXk&libraries=places'></script>
   <link rel="stylesheet" href="<?php echo base_url()?>assets/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.css">
   
-
+  <script type="text/javascript" src="<?php echo base_url() ?>assets/chartjs/Chart.js"></script>
 </head>

@@ -127,7 +127,7 @@
 
 					<div class="form-group">
 						<label for="inputText3" class="col-form-label">Harga</label>
-						<input id="inputText3" name="harga" required min="0" type="number" class="form-control" placeholder="Harga...">
+						<input id="inputText3" name="harga" required min="0" max="999999999" type="number" class="form-control" placeholder="Harga...">
 
 					</div>
 

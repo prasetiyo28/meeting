@@ -32,12 +32,18 @@ class Mitra extends CI_Controller {
 		$id = $this->session->userdata('user_id');
 
 		$data['mitra'] = $this->MMeeting->get_mitra($id);
-		$data2['booking'] = $this->MMeeting->get_booking($data['mitra']->id_mitra);
-		$data['jml_booking'] = intval(count($data2['booking']));
+		$data2['count_booking'] = $this->MMeeting->get_booking_count($data['mitra']->id_mitra);
+		$data['grafik'] = $this->MMeeting->get_data_booking_count($data['mitra']->id_mitra);
+		// echo json_encode($data2['grafik']);
+		$data['jml_booking'] = intval(count($data2['count_booking']));
 		
 		$data['content'] = $this->load->view('mitra/pages/dashboard',$data,true);
 		$this->load->view('mitra/default',$data);
 	}
+
+
+
+	
 
 	public function konfirmasi_selesai($id){
 		$this->MMeeting->konfirmasi_selesai($id);
@@ -51,8 +57,8 @@ class Mitra extends CI_Controller {
 		$id_mitra = $this->session->userdata('id_mitra');
 		$data2['kapasitas'] = $this->MMeeting->get_kapasitas();
 		$data2['ruangan'] = $this->MMeeting->get_ruangan($id_mitra);
-		$data2['booking'] = $this->MMeeting->get_booking($id_mitra);
-		$data['jml_booking'] = intval(count($data2['booking']));
+		$data2['count_booking'] = $this->MMeeting->get_booking_count($id_mitra);
+		$data['jml_booking'] = intval(count($data2['count_booking']));
 		$data['content'] = $this->load->view('mitra/pages/data_ruang',$data2,true);
 		$this->load->view('mitra/default',$data);
 
@@ -106,8 +112,8 @@ class Mitra extends CI_Controller {
 
 		
 		$id_mitra = $this->session->userdata('id_mitra');
-		$data2['booking'] = $this->MMeeting->get_booking($id_mitra);
-		$data['jml_booking'] = intval(count($data2['booking']));
+		$data2['count_booking'] = $this->MMeeting->get_booking_count($id_mitra);
+		$data['jml_booking'] = intval(count($data2['count_booking']));
 		$data['content'] = $this->load->view('mitra/pages/profil',$data2,true);
 		$this->load->view('mitra/default',$data);
 
@@ -133,7 +139,8 @@ class Mitra extends CI_Controller {
 		$data2['ruangan'] = $this->MMeeting->get_ruangan($id_mitra);
 		$data2['offline'] = $this->MMeeting->get_booking_offline($id_mitra);
 		$data2['booking'] = $this->MMeeting->get_booking($id_mitra);
-		$data['jml_booking'] = intval(count($data2['booking']));
+		$data2['count_booking'] = $this->MMeeting->get_booking_count($id_mitra);
+		$data['jml_booking'] = intval(count($data2['count_booking']));
 		$data['content'] = $this->load->view('mitra/pages/data_booking',$data2,true);
 
 		// echo $data['jml_booking'];
@@ -188,8 +195,8 @@ class Mitra extends CI_Controller {
 		$data2['mitra'] = $this->MMeeting->get_mitra($id);
 		$id_mitra = $this->session->userdata('id_mitra');
 		$data2['makanan'] = $this->MMeeting->get_makanan_minuman($id_mitra);
-		$data2['booking'] = $this->MMeeting->get_booking($id_mitra);
-		$data['jml_booking'] = intval(count($data2['booking']));
+		$data2['count_booking'] = $this->MMeeting->get_booking_count($id_mitra);
+		$data['jml_booking'] = intval(count($data2['count_booking']));
 		$data['content'] = $this->load->view('mitra/pages/data_makanan_minuman',$data2,true);
 		$this->load->view('mitra/default',$data);
 

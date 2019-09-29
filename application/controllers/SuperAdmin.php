@@ -12,7 +12,8 @@ class SuperAdmin extends CI_Controller {
 	public function index()
 	{
 		// $data['banner'] = 'true';
-		$data['content'] = $this->load->view('super/pages/dashboard','',true);
+		$data2['grafik'] = $this->MMeeting->get_grafik_transaksi_all();
+		$data['content'] = $this->load->view('super/pages/dashboard',$data2,true);
 		$this->load->view('super/default',$data);
 
 	}

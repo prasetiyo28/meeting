@@ -66,6 +66,32 @@ class MMeeting extends CI_Model{
 		return $query->result();
 	}
 
+	function get_booking_count($id){
+		$this->db->select('booking.*, ruang.nama_ruangan, ruang.harga, user.nama');
+		$this->db->from('booking');
+		$this->db->join('ruang','booking.id_ruang = ruang.id_ruang');
+		$this->db->join('user','booking.id_user = user.id_user');
+		$this->db->where('ruang.id_mitra',$id);
+		$this->db->where('booking.status','1');
+		$this->db->order_by('booking.tanggal','DESC');
+		// $this->db->where('ruang.verif','0');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	function get_data_booking_count($id){
+		$this->db->select('count(*) as jumlah,booking.id_ruang, ruang.nama_ruangan');
+		$this->db->from('booking');
+		$this->db->join('ruang','booking.id_ruang = ruang.id_ruang');
+		$this->db->where('ruang.id_mitra',$id);
+		$this->db->where('booking.status > ','0');
+		$this->db->group_by('booking.id_ruang');
+
+		// $this->db->where('ruang.verif','0');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
 	function get_booking_offline($id){
 		$this->db->select('booking.*, ruang.nama_ruangan, ruang.harga');
 		$this->db->from('booking');
@@ -86,6 +112,18 @@ class MMeeting extends CI_Model{
 		$this->db->join('user','booking.id_user = user.id_user');
 		$this->db->join('mitra','ruang.id_mitra = mitra.id_mitra');
 		// $this->db->where('ruang.verif','0');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	function get_grafik_transaksi_all(){
+		$this->db->select('count(*) as jumlah,mitra.nama_mitra as nama_mitra');
+		$this->db->from('booking');
+		$this->db->join('ruang','booking.id_ruang = ruang.id_ruang');
+		$this->db->join('mitra','ruang.id_mitra = mitra.id_mitra');
+		$this->db->group_by('ruang.id_mitra');
+		$this->db->where('booking.status >','0');
+		$this->db->limit(5);
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -201,14 +239,14 @@ class MMeeting extends CI_Model{
 	}
 
 	function get_mitra_all(){
-		
+
 		$this->db->where('deleted','0');
 		$query = $this->db->get('mitra');
 		return $query->result();
 	}
 
 	function get_user_all(){
-		
+
 		$this->db->where_not_in('jenis_user','2');
 		$this->db->where('deleted','0');
 		$query = $this->db->get('user');

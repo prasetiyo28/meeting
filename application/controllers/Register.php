@@ -10,18 +10,30 @@ class Register extends CI_Controller{
 		$data['nama'] = $_POST['nama'];
 		// $data['no_hp'] = $_POST['nomor'];
 		$data['email'] = $_POST['email'];
+		$data2['email'] = $_POST['email'];
 		$data['password'] = md5($_POST['password']);
 		$data['jenis_user'] = $_POST['level'];
 
-		$tabel = 'user';
 
-		$this->MMeeting->tambah_data($tabel,$data);
-		$regis = $this->MMeeting->cek_id($data['email']);
-		$this->send($regis->id_user,$data['email']);
 
-		$this->session->set_flashdata('alert','berhasil');
-		redirect('frontend/login');
+		$cek_email = $this->MMeeting->cek_login($data2);
+		if (isset($cek_email))	 {
 
+			$this->session->set_flashdata('alert','gagal');
+			redirect('frontend/register');
+		}else{
+			$tabel = 'user';
+
+			$this->MMeeting->tambah_data($tabel,$data);
+			$regis = $this->MMeeting->cek_id($data['email']);
+			$this->send($regis->id_user,$data['email']);
+
+			$this->session->set_flashdata('alert','berhasil');
+			redirect('frontend/login');
+
+		}
+
+		
 
 	}
 

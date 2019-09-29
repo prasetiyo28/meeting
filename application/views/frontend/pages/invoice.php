@@ -32,6 +32,12 @@
                         <td><?php echo $invoice->makan_minum ?></td>
                     </tr>
 
+                    <tr>
+                        <td>Batas Pembayaran</td>
+                        <td>:</td>
+                        <td><?php $timestamp = strtotime($invoice->tanggal_booking); echo $time = date("d/m/Y h:i",strtotime($invoice->tanggal_booking. ' + 2 days')); ?></td>
+                    </tr>
+
                     <tr >
                         <td colspan="3">
                             <a href="<?php echo $invoice->url ?>" class="btn btn-info" target="_blank">Klik link berikut untuk melakukan pembayaran</a>
